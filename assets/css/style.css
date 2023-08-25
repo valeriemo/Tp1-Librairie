@@ -1,0 +1,110 @@
+/* general.css */
+
+* {
+	margin: 0;
+    font-family: sans-serif;
+    color: black;
+}
+
+img{
+	object-fit: cover;
+	width: 100%;
+}
+/* Composition de base */
+
+body {
+	display: grid;
+	gap: 20px;
+}
+
+/* Composition déployée en grille */
+html {
+    display: flex;
+    height: 100%;
+}
+
+body {
+    flex-basis: 100%;
+}
+
+/* Grille de la Page*/
+body {
+    grid-template-areas:
+    "header header"
+    "nav main";
+    grid-template-columns: clamp(40ch, 30vw, 200px) 1fr;
+    grid-template-rows: auto 100% auto;
+}
+header{
+    grid-area: header;
+    margin: 40px;
+}
+
+/* Navigation */
+nav {
+    grid-area: nav;
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-size: 20px;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: 1.5px underline;
+    text-underline-offset: 5px
+}
+
+/* Grille du main */
+main{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35ch, 1fr));
+    gap: 30px;
+    margin: 40px;
+}
+
+/* Composant Article */
+.container-livre{
+    background-color: aliceblue;
+    max-width: max-content;
+    max-height: 700px;
+    display: flex;
+    flex-direction: column;
+}
+.container-livre-text > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    min-height: 3em;
+}
+.container-livre-text{
+    margin-top: auto;
+}
+.container-livre h2{
+    font-size: 25px;
+    font-weight: 400;
+    /*min-height: 1em;*/
+}
+.container-livre strong{
+    font-size: 18px;
+}
+.container-livre button{
+    background-color: white;
+    padding: 3px 8px;
+    border-radius: 0;
+    border: 1px solid black;
+    display: block;
+    font-size: 16px;
+}
+
+
+
+/* Défiler dans le contenu et empêcher
+    le défilement de continuer après */
+main {
+    overscroll-behavior: contain;
+    max-width: 100%;
+}
+
