@@ -16,7 +16,10 @@ body {
 	display: grid;
 	gap: 20px;
 }
-
+header{
+    display: flex;
+    justify-content: space-between;
+}
 /* Composition déployée en grille */
 html {
     display: flex;
@@ -41,7 +44,7 @@ header{
 }
 
 /* Navigation */
-nav {
+aside {
     grid-area: nav;
     margin: 40px;
     display: flex;
@@ -108,3 +111,55 @@ main {
     max-width: 100%;
 }
 
+/* modale */
+.btn-panier{
+    position: relative;
+    padding: var(--md-space);
+    cursor: pointer;
+}
+.panier-modal {
+    position: absolute;
+    top: 8%;
+    right: 0;
+    background-color: rgb(255, 255, 255);
+    width: 300px;
+    margin-right: 40px;
+    padding: 30px;
+    border: 1px solid black;
+}
+
+.panier-modal.invisible {
+    display: none;
+}
+.panier-modal .triangle{
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    top: -5.1px;
+    right: 18px;
+    z-index: 666;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    border-top: 0.2px solid black;
+    border-left: 0.2px solid black;
+}
+
+/* Tableau panier modal */
+table {
+    width: 100%;
+    max-width: 400px;
+    height: max-content;
+    display: block;
+    overflow-x: auto;
+    border-spacing: 10px;
+    text-align: left;
+}
+td{
+    min-width: 50px;
+}
+tfoot > th{
+    font-weight: 400;
+}
+thead >tr> th{
+    font-weight: 300;
+}

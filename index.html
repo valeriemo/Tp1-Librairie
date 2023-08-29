@@ -1,85 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tp 1 - Valérie Moreau</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/05722ec91f.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--     Dans html jai juste le fichier main (chef d'orchestre)-->
+    <script src="assets/js/main.js" type="Module"></script>
+  </head>
+  <body>
     <header>
-        <h1>TP 1</h1>
-        
+      <h1>TP 1</h1>
+      <div>
+        <i
+          class="btn-panier"
+          class="fa-regular fa-cart-shopping"
+          style="color: #000000"
+          >Bouton</i
+        >
+        <!-- Boite modale -->
+
+            <div class="panier-modal invisible" data-modal>
+                <div class="triangle"></div>
+                <table>
+                    <thead>
+                    <th>Livre</th>
+                    <th>Prix</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Ce que le quebec disent de nous au quebec</td>
+                        <td>35 $</td>
+                    </tr>
+                    <tr>
+                        <td>Titre 2</td>
+                        <td>35 $</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td>Total</td>
+                        <th>56 $</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+      </div>
     </header>
-    <nav>
-        <a href="#">Tous</a>
-        <a href="#">Nouveautés</a>
-        <a href="#">Littérature</a>
-        <a href="#">Art de vivre</a>
-        <a href="#">BD, Jeunesse, Humour</a>
-        <a href="#">Culture et société</a>
-        <a href="#">Loisirs, Tourisme, Nature</a>
-        <a href="#">Savoir et science</a>
-    </nav>
+
+    <aside>
+      <a href="#">Tous</a>
+      <a href="#">Nouveautés</a>
+      <a href="#">Littérature</a>
+      <a href="#">Art de vivre</a>
+      <a href="#">BD, Jeunesse, Humour</a>
+      <a href="#">Culture et société</a>
+      <a href="#">Loisirs, Tourisme, Nature</a>
+      <a href="#">Savoir et science</a>
+    </aside>
 
     <main>
-        <article class="container-livre">
-            <picture><img src="assets/img/quebec-au-cinema.jpeg" alt="quebec-au-cinema"></picture>
-            <div class="container-livre-text">
-                <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
-                <div>          
-                    <strong>35 $</strong>
-                    <button>Ajouter</button>
-                </div>
-            </div>
-        </article>
-        
-        <article class="container-livre">
-            <picture><img src="assets/img/ca-veut-dire-quoi-quand-mon-chat-fait-ca.jpeg" alt="quebec-au-cinema"></picture>
-            <div class="container-livre-text">
-                <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
-                <div>          
-                    <strong>35 $</strong>
-                    <button>Ajouter</button>
-                </div>
-            </div>
-        </article>
+      <article class="container-livre">
+        <picture
+          ><img src="assets/img/quebec-au-cinema.jpeg" alt="quebec-au-cinema"
+        /></picture>
+        <div class="container-livre-text">
+          <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
+          <div>
+            <strong>35 $</strong>
+            <button>Ajouter</button>
+          </div>
+        </div>
+      </article>
 
-        <article class="container-livre">
-            <picture><img src="assets/img/ici-la-terre.jpeg" alt="quebec-au-cinema"></picture>
-            <div class="container-livre-text">
-                <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
-                <div>          
-                    <strong>35 $</strong>
-                    <button>Ajouter</button>
-                </div>
-            </div>
-        </article>
+      <article class="container-livre">
+        <picture
+          ><img
+            src="assets/img/ca-veut-dire-quoi-quand-mon-chat-fait-ca.jpeg"
+            alt="quebec-au-cinema"
+        /></picture>
+        <div class="container-livre-text">
+          <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
+          <div>
+            <strong>35 $</strong>
+            <button>Ajouter</button>
+          </div>
+        </div>
+      </article>
 
-        <article class="container-livre">
-            <picture><img src="assets/img/cafe.jpeg" alt="quebec-au-cinema"></picture>
-            <div class="container-livre-text">
-                <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
-                <div>          
-                    <strong>35 $</strong>
-                    <button>Ajouter</button>
-                </div>
-            </div>
-        </article>
-        
-        <article class="container-livre">
-            <picture><img src="assets/img/climats.jpeg" alt="quebec-au-cinema"></picture>
-            <div class="container-livre-text">
-                <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
-                <div>          
-                    <strong>35 $</strong>
-                    <button>Ajouter</button>
-                </div>
-            </div>
-        </article>
-        
+      <article class="container-livre">
+        <picture
+          ><img src="assets/img/ici-la-terre.jpeg" alt="quebec-au-cinema"
+        /></picture>
+        <div class="container-livre-text">
+          <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
+          <div>
+            <strong>35 $</strong>
+            <button>Ajouter</button>
+          </div>
+        </div>
+      </article>
 
+      <article class="container-livre">
+        <picture
+          ><img src="assets/img/cafe.jpeg" alt="quebec-au-cinema"
+        /></picture>
+        <div class="container-livre-text">
+          <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
+          <div>
+            <strong>35 $</strong>
+            <button>Ajouter</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="container-livre">
+        <picture
+          ><img src="assets/img/climats.jpeg" alt="quebec-au-cinema"
+        /></picture>
+        <div class="container-livre-text">
+          <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
+          <div>
+            <strong>35 $</strong>
+            <button>Ajouter</button>
+          </div>
+        </div>
+      </article>
     </main>
-</body>
+  </body>
 </html>
