@@ -66,7 +66,8 @@ export class Livre {
                 document.dispatchEvent(evenement);
 
                 }.bind(this));
-                console.log(element, boutonPanier);
+                //console.log(element, boutonPanier);
+        
         // Ajouter l'événement sur le bouton d'ajout au panier
 
         // Ajouter l'événement sur les filtres

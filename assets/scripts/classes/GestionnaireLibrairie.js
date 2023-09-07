@@ -25,11 +25,13 @@ export default class GestionnaireLibrairie {
         // Conteneur de tous les livres:
         this.listeHTML = this.conteneurHTML.querySelector("[data-liste]");
 
+        // Btn filtre:
+        this.btnsFiltres = this.conteneurHTML.querySelectorAll("[data-filtre-categorie]");
 
         // On initialise le panier d'achat
         this.panierAchat = new PanierAchat();
         // ** A faire **
-
+        // On initialise le 
         // On initialise la boite modale de détails de livre
         // ** A faire **
 
@@ -45,6 +47,18 @@ export default class GestionnaireLibrairie {
             this.listeObjetsLivres.push(livre);
         });
 
+        // Ajouter l'événement sur le bouton d'ajout au panier
+
+        // Ajouter l'événement sur les filtres
+        for (let i = 0, l = this.btnsFiltres.length; i < l; i++) {
+            this.btnsFiltres[i].addEventListener('click', function (e) {
+                console.log(e.target.dataset);
+                if (e.target.dataset == 'nouveaute') {
+
+                }
+            })
+            
+        }
         
     }
 
@@ -54,7 +68,12 @@ export default class GestionnaireLibrairie {
     }
 
 
-    filtrerListeLivres(filtre, evenement) {}
+    filtrerListeLivres(filtre, evenement) {
+        const elementsNonNouveaute = this.listeHTML.querySelectorAll('[data-filtre-categorie]:not([data-categorie="Culture et société"])');
+        elementsNonNouveaute.classList.add("invisible");
+
+
+    }
 
     enregistrerPanier() {
         //Récupérer le contenu du panier d'achat
