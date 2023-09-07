@@ -1,4 +1,4 @@
-export const livres = [
+export const listeLivres = [
     {
         titre: 'Québec au cinéma : Ce que nos films disent de nous',
         auteur: 'Michel Coulombe',

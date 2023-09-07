@@ -70,7 +70,6 @@ main{
 
 /* Composant Article */
 .container-livre{
-    background-color: aliceblue;
     max-width: max-content;
     max-height: 700px;
     display: flex;

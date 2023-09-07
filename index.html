@@ -6,25 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tp 1 - Valérie Moreau</title>
     <link rel="stylesheet" href="assets/css/style.css" />
-    <script
-      src="https://kit.fontawesome.com/05722ec91f.js"
-      crossorigin="anonymous"
-    ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--     Dans html jai juste le fichier main (chef d'orchestre)-->
-    <script src="assets/js/main.js" type="Module"></script>
+    <script src="assets/scripts/main.js" type="Module"></script>
   </head>
-  <body>
+
+  <body data-librairie>
+    
     <header>
       <h1>TP 1</h1>
       <div>
         <i
-          class="btn-panier"
-          class="fa-regular fa-cart-shopping"
+          class="btn-panier fa fa-solid fa-cart-shopping"
           style="color: #000000"
-          >Bouton</i
+          ></i
         >
-        <!-- Boite modale -->
-
+        <!-- Boite panier modale -->
             <div class="panier-modal invisible" data-modal>
                 <div class="triangle"></div>
                 <table>
@@ -53,18 +52,19 @@
       </div>
     </header>
 
-    <aside>
-      <a href="#">Tous</a>
-      <a href="#">Nouveautés</a>
-      <a href="#">Littérature</a>
-      <a href="#">Art de vivre</a>
-      <a href="#">BD, Jeunesse, Humour</a>
-      <a href="#">Culture et société</a>
-      <a href="#">Loisirs, Tourisme, Nature</a>
-      <a href="#">Savoir et science</a>
+    <aside data-liste-filtre>
+      <a data-filtre-categorie="tous" href="#">Tous</a>
+      <a data-filtre-categorie="nouveaute" href="#">Nouveautés</a>
+      <a data-filtre-categorie="litterature" href="#">Littérature</a>
+      <a data-filtre-categorie="art de vivre" href="#">Art de vivre</a>
+      <a data-filtre-categorie="jeunesse, humour" href="#">BD, Jeunesse, Humour</a>
+      <a data-filtre-categorie="culture et societe" href="#">Culture et société</a>
+      <a data-filtre-categorie="loisirs, tourisme, nature" href="#">Loisirs, Tourisme, Nature</a>
+      <a data-filtre-categorie="savoir et science" href="#">Savoir et science</a>
     </aside>
 
-    <main>
+    <main data-liste-livre>
+<!-- 
       <article class="container-livre">
         <picture
           ><img src="assets/img/quebec-au-cinema.jpeg" alt="quebec-au-cinema"
@@ -76,61 +76,9 @@
             <button>Ajouter</button>
           </div>
         </div>
-      </article>
+      </article> -->
 
-      <article class="container-livre">
-        <picture
-          ><img
-            src="assets/img/ca-veut-dire-quoi-quand-mon-chat-fait-ca.jpeg"
-            alt="quebec-au-cinema"
-        /></picture>
-        <div class="container-livre-text">
-          <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
-          <div>
-            <strong>35 $</strong>
-            <button>Ajouter</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="container-livre">
-        <picture
-          ><img src="assets/img/ici-la-terre.jpeg" alt="quebec-au-cinema"
-        /></picture>
-        <div class="container-livre-text">
-          <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
-          <div>
-            <strong>35 $</strong>
-            <button>Ajouter</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="container-livre">
-        <picture
-          ><img src="assets/img/cafe.jpeg" alt="quebec-au-cinema"
-        /></picture>
-        <div class="container-livre-text">
-          <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
-          <div>
-            <strong>35 $</strong>
-            <button>Ajouter</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="container-livre">
-        <picture
-          ><img src="assets/img/climats.jpeg" alt="quebec-au-cinema"
-        /></picture>
-        <div class="container-livre-text">
-          <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
-          <div>
-            <strong>35 $</strong>
-            <button>Ajouter</button>
-          </div>
-        </div>
-      </article>
     </main>
   </body>
+
 </html>
