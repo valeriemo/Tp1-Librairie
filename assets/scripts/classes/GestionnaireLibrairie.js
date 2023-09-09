@@ -23,10 +23,10 @@ export default class GestionnaireLibrairie {
         this.selectionFiltre = null;
         this.listeObjetsLivres = [];
         // Conteneur de tous les livres:
-        this.listeHTML = this.conteneurHTML.querySelector("[data-liste]");
-
+        this.listeHTML = this.conteneurHTML.querySelector("[data-liste-livre]");
+        // Livres
         // Btn filtre:
-        this.btnsFiltres = this.conteneurHTML.querySelectorAll("[data-filtre-categorie]");
+        this.btnCategorie = this.conteneurHTML.querySelector("[data-liste-filtre]");
 
         // On initialise le panier d'achat
         this.panierAchat = new PanierAchat();
@@ -48,17 +48,29 @@ export default class GestionnaireLibrairie {
         });
 
         // Ajouter l'événement sur le bouton d'ajout au panier
+        //Ajouter l'événement sur les filtres
+        this.btnCategorie.addEventListener('click', function (e) {
 
-        // Ajouter l'événement sur les filtres
-        for (let i = 0, l = this.btnsFiltres.length; i < l; i++) {
-            this.btnsFiltres[i].addEventListener('click', function (e) {
-                console.log(e.target.dataset);
-                if (e.target.dataset == 'nouveaute') {
+            if (e.target.dataset.filtreCategorie == 'litterature') {
+                this.filtrerListeLivres('Littérature', e);
+            } else if (e.target.dataset.filtreCategorie == 'art de vivre') {
+                this.filtrerListeLivres('Art de vivre', e);
+            } else if (e.target.dataset.filtreCategorie == 'bd, jeunesse, humour') {
+                this.filtrerListeLivres('BD, Jeunesse, Humour', e);
+            } else if (e.target.dataset.filtreCategorie == 'culture et societe') {
+                this.filtrerListeLivres('Culture et société', e);
+            } else if (e.target.dataset.filtreCategorie == 'loisirs, tourisme, nature') {
+                this.filtrerListeLivres('Loisirs, Tourisme, Nature', e);
+            } else if (e.target.dataset.filtreCategorie == 'savoir et science') {
+                this.filtrerListeLivres('Savoir et science', e)
+            } else if (e.target.dataset.filtreCategorie == 'nouveaute') {
+                this.filtrerNouveautes('nouveaute', e)
+            } else if (e.target.dataset.filtreCategorie == 'tous'){
+                this.filtrerListeLivres('tous', e);
+            }
 
-                }
-            })
-            
-        }
+        }.bind(this));
+        
         
     }
 
@@ -69,11 +81,43 @@ export default class GestionnaireLibrairie {
 
 
     filtrerListeLivres(filtre, evenement) {
-        const elementsNonNouveaute = this.listeHTML.querySelectorAll('[data-filtre-categorie]:not([data-categorie="Culture et société"])');
-        elementsNonNouveaute.classList.add("invisible");
 
-
+        const elementsAvantFiltres = this.listeHTML.querySelectorAll(".container-livre");
+        if (filtre == 'tous') {
+            elementsAvantFiltres.forEach((element) => {
+                if (element.classList.contains('invisible')){
+                    element.classList.remove('invisible');
+                }
+            });
+        } else {
+            elementsAvantFiltres.forEach((element) => {
+                if (element.classList.contains('invisible')){
+                    element.classList.remove('invisible');
+                }
+            });
+            elementsAvantFiltres.forEach((element) => {
+                if (element.dataset.categorie !== filtre) {
+                    element.classList.add('invisible');
+                }
+            });
+        }
     }
+
+    filtrerNouveautes(evenement) {
+        const elementsAvantFiltres = this.listeHTML.querySelectorAll(".container-livre");
+            console.log('nouveau')
+            elementsAvantFiltres.forEach((element) => {
+                if (element.classList.contains('invisible')){
+                    element.classList.remove('invisible');
+                }
+            });
+            elementsAvantFiltres.forEach((element) => {
+                if (element.dataset.nouveaute == 'false') {
+                    element.classList.add('invisible');
+                }
+            });
+    }
+    
 
     enregistrerPanier() {
         //Récupérer le contenu du panier d'achat
