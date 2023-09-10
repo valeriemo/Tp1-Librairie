@@ -6,49 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tp 1 - Valérie Moreau</title>
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-  integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <!--     Dans html jai juste le fichier main (chef d'orchestre)-->
     <script src="assets/scripts/main.js" type="Module"></script>
   </head>
 
   <body data-librairie>
-    
     <header>
       <h1>TP 1</h1>
       <div>
         <i
           class="btn-panier fa fa-solid fa-cart-shopping"
           style="color: #000000"
-          ></i
-        >
+        ></i>
         <!-- Boite panier modale -->
-            <div class="panier-modal invisible" data-modal>
-                <div class="triangle"></div>
-                <table>
-                    <thead>
-                    <th>Livre</th>
-                    <th>Prix</th>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Ce que le quebec disent de nous au quebec</td>
-                        <td>35 $</td>
-                    </tr>
-                    <tr>
-                        <td>Titre 2</td>
-                        <td>35 $</td>
-                    </tr>
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <td>Total</td>
-                        <th>56 $</th>
-                    </tr>
-                    </tfoot>
-                </table>
-            </div>
+        <div class="panier-modal invisible" data-modal>
+          <div class="triangle"></div>
+          <table>
+            <thead>
+              <th>Livre</th>
+              <th>Prix</th>
+            </thead>
+            <tbody>
+              <!-- <tr>
+                <td>Ce que le quebec disent de nous au quebec</td>
+                <td>35 $</td>
+              </tr>
+              <tr>
+                <td>Titre 2</td>
+                <td>35 $</td>
+              </tr> -->
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Total</td>
+                <th>56 $</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
     </header>
 
@@ -57,28 +59,21 @@
       <a data-filtre-categorie="nouveaute" href="#">Nouveautés</a>
       <a data-filtre-categorie="litterature" href="#">Littérature</a>
       <a data-filtre-categorie="art de vivre" href="#">Art de vivre</a>
-      <a data-filtre-categorie="bd, jeunesse, humour" href="#">BD, Jeunesse, Humour</a>
-      <a data-filtre-categorie="culture et societe" href="#">Culture et société</a>
-      <a data-filtre-categorie="loisirs, tourisme, nature" href="#">Loisirs, Tourisme, Nature</a>
-      <a data-filtre-categorie="savoir et science" href="#">Savoir et science</a>
+      <a data-filtre-categorie="bd, jeunesse, humour" href="#"
+        >BD, Jeunesse, Humour</a
+      >
+      <a data-filtre-categorie="culture et societe" href="#"
+        >Culture et société</a
+      >
+      <a data-filtre-categorie="loisirs, tourisme, nature" href="#"
+        >Loisirs, Tourisme, Nature</a
+      >
+      <a data-filtre-categorie="savoir et science" href="#"
+        >Savoir et science</a
+      >
     </aside>
 
     <main data-liste-livre>
-<!-- 
-      <article class="container-livre">
-        <picture
-          ><img src="assets/img/quebec-au-cinema.jpeg" alt="quebec-au-cinema"
-        /></picture>
-        <div class="container-livre-text">
-          <h2>Québec au cinéma: Ce que nos films disent de nous</h2>
-          <div>
-            <strong>35 $</strong>
-            <button>Ajouter</button>
-          </div>
-        </div>
-      </article> -->
-
     </main>
   </body>
-
 </html>

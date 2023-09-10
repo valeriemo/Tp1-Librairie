@@ -1,3 +1,6 @@
+import GestionnaireLibrairie from "./GestionnaireLibrairie.js";
+import { PanierAchat } from "./PanierAchat.js";
+
 export class Livre {
     constructor(donneesLivre, index) {
         //Comme il n'y a pas de base de données, on doit créer un index pour chaque livre
@@ -24,14 +27,10 @@ export class Livre {
     }
 
     injecterHTML() {
-        //Ce code n'est pas complet, vous devez vous l'approprier en fonction de votre projet
-        //Vous pouvez utiliser les attributs data-* pour stocker des informations dans le HTML
-        //Ex: data-index-livre, data-categorie, data-nouveaute, etc.
-        //Le CSS doit être adapté en conséquence
         const livreHTML = `
                         <article class="container-livre" data-index-livre="${this.index}" data-categorie="${this.categorie}" data-nouveaute="${this.nouveaute}">
                             <picture
-                            ><img src="${this.image}" alt="${this.image}"
+                            ><img src="${this.image}" alt="${this.titre}"
                             /></picture>
                             <div class="container-livre-text">
                             <h2>${this.titre}</h2>
@@ -40,9 +39,9 @@ export class Livre {
                                 <button data-btn-panier=${this.index}>Ajouter</button>
                             </div>
                             </div>
+                            <div data-modal-livre></div>
                         </article>`;
 
-        //On injecte le HTML dans la liste du gestionnaire de librairie
         this.containerListeLivre.insertAdjacentHTML('beforeend', livreHTML);
 
         const element = this.containerListeLivre.lastElementChild;
@@ -53,11 +52,13 @@ export class Livre {
             "click",
             function () {
                 //AJOUTER LIVRE AU PANIER
-                // GestionnaireLibrairie.instance.panier.ajouterAuPanier();
+                GestionnaireLibrairie.instance.panierAchat.ajouterAuPanier(this);
 
                 const donnees = {
                     detail:this,
+                    
                 }
+                    //console.log(donnees);
                 /**
                  * librairieApp_ajouterPanier envoie de la donnee
                  */
@@ -66,18 +67,8 @@ export class Livre {
                 document.dispatchEvent(evenement);
 
                 }.bind(this));
-                //console.log(element, boutonPanier);
         
-        // Ajouter l'événement sur le bouton d'ajout au panier
 
-        // Ajouter l'événement sur les filtres
-    }
-    
-
-
-
-    afficherDetails() {
-        //Afficher les détails du livre dans la modale
     }
 
     }

@@ -1,5 +1,6 @@
 import { listeLivres } from "../../../data/listeLivres.js";
 import { PanierAchat } from "./PanierAchat.js";
+import { LivreModal } from "./modal.js";
 import GestionnaireDonnees from "./GestionnaireDonnees.js";
 import { Livre } from "./Livre.js";
 /**
@@ -20,37 +21,37 @@ export default class GestionnaireLibrairie {
         this.conteneurHTML = conteneurHTML;
 
         // On initialise les propriétés
-        this.selectionFiltre = null;
         this.listeObjetsLivres = [];
         // Conteneur de tous les livres:
         this.listeHTML = this.conteneurHTML.querySelector("[data-liste-livre]");
-        // Livres
+
         // Btn filtre:
         this.btnCategorie = this.conteneurHTML.querySelector("[data-liste-filtre]");
 
         // On initialise le panier d'achat
         this.panierAchat = new PanierAchat();
         // ** A faire **
-        // On initialise le 
         // On initialise la boite modale de détails de livre
         // ** A faire **
-
         // On initialise les valeurs et les événements
         this.init();
     }
 
     init() {
-        // On crée un objet livre pour chaque livre de la liste
-        // Afficher la liste des livres au chargement de la page à chaque création de new livre
         listeLivres.forEach((element, index) => {
             const livre = new Livre(element, index);
             this.listeObjetsLivres.push(livre);
         });
 
-        // Ajouter l'événement sur le bouton d'ajout au panier
-        //Ajouter l'événement sur les filtres
-        this.btnCategorie.addEventListener('click', function (e) {
+        this.conteneursLivre = this.listeHTML.querySelectorAll(".container-livre");
 
+        this.conteneursLivre.forEach(function (conteneur) {
+            conteneur.addEventListener('click', function(e){
+                const modalLivre = new LivreModal(conteneur);
+            });
+        });
+        
+        this.btnCategorie.addEventListener('click', function (e) {
             if (e.target.dataset.filtreCategorie == 'litterature') {
                 this.filtrerListeLivres('Littérature', e);
             } else if (e.target.dataset.filtreCategorie == 'art de vivre') {
@@ -68,15 +69,7 @@ export default class GestionnaireLibrairie {
             } else if (e.target.dataset.filtreCategorie == 'tous'){
                 this.filtrerListeLivres('tous', e);
             }
-
         }.bind(this));
-        
-        
-    }
-
-    onHandleClick(e) {
-        //Si on clique sur le bouton d'ajout au panier, on ajoute le livre au panier
-        //Si on clique ailleurs sur la liste, on affiche les détails du livre avec la modale
     }
 
 
