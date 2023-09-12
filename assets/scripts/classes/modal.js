@@ -1,19 +1,21 @@
 import { listeLivres } from "../../../data/listeLivres.js";
+import GestionnaireLibrairie from "./GestionnaireLibrairie.js";
 
 
 export class LivreModal {
     constructor(conteneur) {
-            //Initialiser les propriétés
             this.conteneur = conteneur;
-            this.listeHTML = document.querySelector("[data-liste-livre]");
-            this.modalLivre = document.querySelector("[data-modal]");
+            this.listeHTML = GestionnaireLibrairie.instance.conteneurHTML.querySelector("[data-liste-livre]")
+            this.modalLivre = GestionnaireLibrairie.instance.conteneurHTML.querySelector("[data-modal]");
             this.index = this.conteneur.dataset.indexLivre;
-            this.divModal = this.conteneur.querySelector("[data-modal-livre]");
+            this.divModal = conteneur.querySelector("[data-modal-livre]");
+            
             this.setHTML = this.setHTML.bind(this)
             this.init();
     }
 
     init() {
+        console.log("index", this.index);
         const data = listeLivres[this.index];
         this.setHTML(data);
 
@@ -54,18 +56,11 @@ export class LivreModal {
     afficher() {
         //Afficher la boite modale avec le CSS
         this.divModal.classList.toggle("invisible");
-
+console.log(this.divModal.classList.contains("invisible"))
         //Bloquer le scroll de la page
         //- On peut utiliser la propriété overflow: hidden; sur le body
         //- et mettre la propriété height: 100vh; sur le body
         //Ex: document.body.style.overflow = "hidden";
     }
 
-    cacher() {
-        //Cacher la boite modale avec le CSS
-        this.divModal.classList.add('invisible');
-
-        //Débloquer le scroll de la page
-        //Ex: document.body.style.overflow = "";
-    }
 }

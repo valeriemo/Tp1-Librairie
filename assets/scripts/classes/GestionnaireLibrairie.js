@@ -1,6 +1,7 @@
 import { listeLivres } from "../../../data/listeLivres.js";
 import { PanierAchat } from "./PanierAchat.js";
 import { LivreModal } from "./modal.js";
+// Ou devrais-je sauvegarder mes données ?
 import GestionnaireDonnees from "./GestionnaireDonnees.js";
 import { Livre } from "./Livre.js";
 /**
@@ -14,26 +15,20 @@ export default class GestionnaireLibrairie {
         } else {
             throw new Error("Impossible d'instancier plus d'une fois GestionnaireLibrairie");
         }
-        // On assigne l'instance à la propriété instance de la classe
-        // La propriété instance est statique, elle appartient à la classe et non à l'instance
-        // A faire
 
         this.conteneurHTML = conteneurHTML;
-
-        // On initialise les propriétés
         this.listeObjetsLivres = [];
         // Conteneur de tous les livres:
         this.listeHTML = this.conteneurHTML.querySelector("[data-liste-livre]");
-
         // Btn filtre:
         this.btnCategorie = this.conteneurHTML.querySelector("[data-liste-filtre]");
-
         // On initialise le panier d'achat
         this.panierAchat = new PanierAchat();
         // ** A faire **
         // On initialise la boite modale de détails de livre
         // ** A faire **
         // On initialise les valeurs et les événements
+
         this.init();
     }
 
@@ -47,6 +42,10 @@ export default class GestionnaireLibrairie {
 
         this.conteneursLivre.forEach(function (conteneur) {
             conteneur.addEventListener('click', function(e){
+                if(e.target.closest("[data-btn-panier]")!=null){
+                    return;
+                }
+                console.log(conteneur);
                 const modalLivre = new LivreModal(conteneur);
             });
         });
@@ -70,6 +69,9 @@ export default class GestionnaireLibrairie {
                 this.filtrerListeLivres('tous', e);
             }
         }.bind(this));
+
+
+        this.chargerPanier();
     }
 
 
@@ -98,7 +100,6 @@ export default class GestionnaireLibrairie {
 
     filtrerNouveautes(evenement) {
         const elementsAvantFiltres = this.listeHTML.querySelectorAll(".container-livre");
-            console.log('nouveau')
             elementsAvantFiltres.forEach((element) => {
                 if (element.classList.contains('invisible')){
                     element.classList.remove('invisible');
@@ -112,12 +113,19 @@ export default class GestionnaireLibrairie {
     }
     
 
-    enregistrerPanier() {
+    enregistrerPanier(nouveauLivre) {
+        this.panierAchat.ajouterAuPanier(nouveauLivre);
+        const donneePanier = this.panierAchat.panier;
+        const donneesLocales = GestionnaireDonnees.enregistrerDonneesLocales("panier", donneePanier);
         //Récupérer le contenu du panier d'achat
         //Enregistrer le panier dans session storage
     }
 
     chargerPanier() {
+        const donneesLocales = GestionnaireDonnees.recupererDonneesLocales("panier");
+        this.panierAchat.panier = donneesLocales;
+        this.panierAchat.setPanierHTML();
+        console.log("test");
         //Charger le panier du session storage
         //Remplir le panier d'achat avec les données du session storage
         //Afficher le panier d'achat

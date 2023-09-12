@@ -1,13 +1,8 @@
 import GestionnaireLibrairie from "./GestionnaireLibrairie.js";
-import { PanierAchat } from "./PanierAchat.js";
 
 export class Livre {
     constructor(donneesLivre, index) {
-        //Comme il n'y a pas de base de données, on doit créer un index pour chaque livre
-        //Cet index sera utilisé pour identifier le livre dans le panier d'achat
-        //Et récupérer les informations du livre dans la liste des livres
-        this.containerListeLivre = document.querySelector("[data-liste-livre]");
-        
+        this.containerListeLivre = GestionnaireLibrairie.instance.conteneurHTML.querySelector("[data-liste-livre]");
         this.index = index;
         this.titre = donneesLivre.titre;
         this.auteur = donneesLivre.auteur;
@@ -39,9 +34,9 @@ export class Livre {
                                 <button data-btn-panier=${this.index}>Ajouter</button>
                             </div>
                             </div>
-                            <div data-modal-livre></div>
+                            <div data-modal-livre></div>  
                         </article>`;
-
+/* DATA-modal-livre IL EST JUSTE EN DESSOUS DU BTN */
         this.containerListeLivre.insertAdjacentHTML('beforeend', livreHTML);
 
         const element = this.containerListeLivre.lastElementChild;
@@ -52,23 +47,9 @@ export class Livre {
             "click",
             function () {
                 //AJOUTER LIVRE AU PANIER
-                GestionnaireLibrairie.instance.panierAchat.ajouterAuPanier(this);
-
-                const donnees = {
-                    detail:this,
-                    
-                }
-                    //console.log(donnees);
-                /**
-                 * librairieApp_ajouterPanier envoie de la donnee
-                 */
-                const evenement = new CustomEvent("librairieApp_ajouterPanier", donnees);
-                
-                document.dispatchEvent(evenement);
-
+                console.log('ALLOO')
+                GestionnaireLibrairie.instance.enregistrerPanier(this);
                 }.bind(this));
-        
-
     }
 
     }

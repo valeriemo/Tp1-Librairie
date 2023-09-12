@@ -1,4 +1,6 @@
 import GestionnaireLibrairie from "./GestionnaireLibrairie.js";
+import GestionnaireDonnees from "./GestionnaireDonnees.js";
+
 
 export class PanierAchat {
     constructor() {
@@ -8,12 +10,19 @@ export class PanierAchat {
         this.panierModal = GestionnaireLibrairie.instance.conteneurHTML.querySelector(".panier-modal");
 
         this.afficherPanier = this.afficherPanier.bind(this);
-        //On récupère les éléments HTML
         this.init();
     }
 
     init() {
         this.modalBtn.addEventListener("click", this.afficherPanier);
+        
+    }
+
+    ajouterAuPanier(livre) {
+        //Ajouter un livre au panier
+        this.panier.push(livre);
+        //On rafrachit la liste des items du panier avec la méthode setPanierHTML()
+        this.setPanierHTML(this.panier);
     }
 
     setPanierHTML() {
@@ -26,7 +35,7 @@ export class PanierAchat {
 
         // Sinon, afficher les items du panier
         let tableHTML = '';
-        console.log(this.panier);
+
         this.panier.forEach(function (article) {
             tableHTML += `
                 <tr>
@@ -39,19 +48,14 @@ export class PanierAchat {
         tableBody.innerHTML = tableHTML;
     }
 
-    ajouterAuPanier(livre) {
-        //Ajouter un livre au panier
-        this.panier.push(livre);
-        this.setPanierHTML(this.panier);
-        //On rafrachit la liste des items du panier avec la méthode setPanierHTML()
-    }
-
     afficherPanier() {
         //Afficher le panier avec CSS
         this.panierModal.classList.toggle("invisible");
     }
 
-    calculerSousTotal() {}
+    calculerSousTotal() {
+    //additionner chaque prix des articles dans panier;
+    }
     calculerTaxes() {}
     calculerTotal() {}
 }
