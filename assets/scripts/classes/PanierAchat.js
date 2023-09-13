@@ -1,5 +1,4 @@
 import GestionnaireLibrairie from "./GestionnaireLibrairie.js";
-import GestionnaireDonnees from "./GestionnaireDonnees.js";
 
 
 export class PanierAchat {
@@ -8,7 +7,6 @@ export class PanierAchat {
 
         this.modalBtn = GestionnaireLibrairie.instance.conteneurHTML.querySelector(".btn-panier");
         this.panierModal = GestionnaireLibrairie.instance.conteneurHTML.querySelector(".panier-modal");
-
         this.afficherPanier = this.afficherPanier.bind(this);
         this.init();
     }
@@ -19,21 +17,19 @@ export class PanierAchat {
     }
 
     ajouterAuPanier(livre) {
-        //Ajouter un livre au panier
-        this.panier.push(livre);
-        //On rafrachit la liste des items du panier avec la méthode setPanierHTML()
+        let nouveauLivre;
+        this.panier.forEach(function (article) {
+            if (livre.titre !== article.titre){
+                nouveauLivre = livre;
+            }
+        })
+        this.panier.push(nouveauLivre);
         this.setPanierHTML(this.panier);
-    }
-
-    setPanierHTML() {
-        //On vide la liste des items du panier
-        // Si le panier est vide, afficher un message
-        if (this.panier.length === 0) {
-            const msgVide = "Le panier est vide";
-            this.panierModal.innerHTML = msgVide;
         }
 
-        // Sinon, afficher les items du panier
+
+    setPanierHTML() {
+
         let tableHTML = '';
 
         this.panier.forEach(function (article) {
@@ -46,16 +42,28 @@ export class PanierAchat {
         });
         const tableBody = this.panierModal.querySelector('tbody');
         tableBody.innerHTML = tableHTML;
+
+        const containerTotal = this.panierModal.querySelector("[data-prix]");
+        containerTotal.innerHTML = this.calculerTotal() + " $";
+
+        const thLivre = this.panierModal.querySelector("[data-th-livre]");
+        if(this.panier.length + 1){thLivre.innerHTML("Livres")};
     }
 
     afficherPanier() {
-        //Afficher le panier avec CSS
+        if (this.panier.length == 0) {
+            const msgVide = "Il n'y a aucun livre dans votre panier.";
+            this.panierModal.innerHTML = msgVide;
+        }
+        
         this.panierModal.classList.toggle("invisible");
     }
 
-    calculerSousTotal() {
-    //additionner chaque prix des articles dans panier;
+    calculerTotal() {
+    let totalPrix = 0;
+        this.panier.forEach(function (article){
+            totalPrix += article.prix
+        })
+        return totalPrix;
     }
-    calculerTaxes() {}
-    calculerTotal() {}
 }

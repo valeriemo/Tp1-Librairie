@@ -15,10 +15,8 @@ export class LivreModal {
     }
 
     init() {
-        console.log("index", this.index);
         const data = listeLivres[this.index];
         this.setHTML(data);
-
     }
 
     setHTML(data) {
@@ -49,18 +47,17 @@ export class LivreModal {
                                 <p>${data.description}</p>
                                 </div>
                             </div>`;
-            this.divModal.insertAdjacentHTML('beforeend', HTMLModal);
-        this.afficher()
+        this.divModal.insertAdjacentHTML('beforeend', HTMLModal);
+        this.afficher();
     }
 
     afficher() {
-        //Afficher la boite modale avec le CSS
-        this.divModal.classList.toggle("invisible");
-console.log(this.divModal.classList.contains("invisible"))
-        //Bloquer le scroll de la page
-        //- On peut utiliser la propriété overflow: hidden; sur le body
-        //- et mettre la propriété height: 100vh; sur le body
-        //Ex: document.body.style.overflow = "hidden";
-    }
+        if (this.divModal.classList.contains("invisible")){
+            document.body.classList.add("overflow-y-hidden");
+        } else {
+            document.body.classList.remove("overflow-y-hidden");
+        }
 
+        this.divModal.classList.toggle("invisible");
+    }
 }

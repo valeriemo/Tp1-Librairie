@@ -25,12 +25,13 @@
           class="btn-panier fa fa-solid fa-cart-shopping"
           style="color: #000000"
         ></i>
+
         <!-- Boite panier modale -->
         <div class="panier-modal invisible" data-modal-panier>
           <div class="triangle"></div>
           <table>
             <thead>
-              <th>Livre</th>
+              <th data-th-livre>Livre</th>
               <th>Prix</th>
             </thead>
             <tbody>
@@ -46,12 +47,13 @@
             <tfoot>
               <tr>
                 <td>Total</td>
-                <th>56 $</th>
+                <th data-prix></th>
               </tr>
             </tfoot>
           </table>
         </div>
       </div>
+      
     </header>
 
     <aside data-liste-filtre>
@@ -78,10 +80,3 @@
   </body>
 </html>
 
-
-TOUT CE QUI NE FONCTIONNE PAS:
-- le modal est definit trop pres du btn ajouter alors il s'ouvre a chaque fois (current target.closest (class button))
-- mettre le modal dans le html ou debut du main. (essayer de l'effacer quand il se ferme)
-- le scroll arriere: je n'arrive pas a le faire évite avec un toggle
-- les variables de sessions : comment recharger le panier et l'afficher complet ? a quel moment? comment les classes se parle. 
-- evenement personnalisé: devrais-je écouter la page et passe en detail le livre cliquer ? comment faire ?

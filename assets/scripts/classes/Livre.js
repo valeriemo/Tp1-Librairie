@@ -36,22 +36,19 @@ export class Livre {
                             </div>
                             <div data-modal-livre></div>  
                         </article>`;
-/* DATA-modal-livre IL EST JUSTE EN DESSOUS DU BTN */
         this.containerListeLivre.insertAdjacentHTML('beforeend', livreHTML);
 
         const element = this.containerListeLivre.lastElementChild;
         const boutonPanier = element.querySelector("[data-btn-panier]");
 
-        
+        // Au clic du btn "ajouter" le livre est enregistrer
         boutonPanier.addEventListener(
             "click",
             function () {
-                //AJOUTER LIVRE AU PANIER
-                console.log('ALLOO')
+                console.log('test')
                 GestionnaireLibrairie.instance.enregistrerPanier(this);
                 }.bind(this));
     }
-
     }
 
 
