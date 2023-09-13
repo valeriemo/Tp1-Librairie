@@ -61,7 +61,7 @@ export default class GestionnaireLibrairie {
             }
         }.bind(this));
 
-
+        // Je ramasse la donnée si il y en a pour la mettre dans le panier
         this.chargerPanier();
     }
 
@@ -105,7 +105,10 @@ export default class GestionnaireLibrairie {
     
 
     enregistrerPanier(nouveauLivre) {
-        console.log('test2') // IL NE SE REND PAS ICI PARCE QU'IL NE RECONNAIT PAS L'INSTANCE DU PANIER
+        console.log('test2') // IL SE REND ICI MAIS N'ENREGISTRE PAS LES DONNÉES
+        console.log(nouveauLivre)
+        console.log('panier achat : ', this.panierAchat.panier)
+
         this.panierAchat.ajouterAuPanier(nouveauLivre);
         const donneePanier = this.panierAchat.panier;
         const donneesLocales = GestionnaireDonnees.enregistrerDonneesLocales("panier", donneePanier);
@@ -113,7 +116,10 @@ export default class GestionnaireLibrairie {
 
     chargerPanier() {
         const donneesLocales = GestionnaireDonnees.recupererDonneesLocales("panier");
-        this.panierAchat.panier = donneesLocales;
-        this.panierAchat.setPanierHTML();
+        if (donneesLocales !== null){
+            console.log('allo')
+            this.panierAchat.panier = donneesLocales;
+            this.panierAchat.setPanierHTML();
+        }
     }
 }
