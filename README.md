@@ -11,4 +11,4 @@ NICE TO HAVE (à corriger/ajouter lorsque j'aurai le temps)
 ( o.o )
  > ^ <
 
-Liens GitHub: 
+Liens GitHub: https://github.com/valeriemo/Tp1-Librairie.git
