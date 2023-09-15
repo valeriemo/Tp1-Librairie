@@ -1,5 +1,4 @@
 export default class GestionnaireDonnees {
-    // fonction statique disponible partout sans avoir à faire new
     //LocalStorage
     static enregistrerDonneesLocales(cle, valeur) {
         const chaineJson = JSON.stringify(valeur);

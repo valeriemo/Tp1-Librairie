@@ -19,8 +19,12 @@ export class LivreModal {
         this.setHTML(data);
     }
 
+    /**
+     * Affiche les détails du livre dans le modal
+     * 
+     * @param {Object} data Les données du livre à afficher
+     */
     setHTML(data) {
-        //Modifier le texte de la boite modale
         const HTMLModal = `<div data-modal class="livre-modal">
                                 <picture>
                                 <img src="${data.image}" alt="${data.titre}" />
@@ -51,7 +55,11 @@ export class LivreModal {
         this.afficher();
     }
 
+    /**
+     * Affiche ou masque le modal
+     */
     afficher() {
+        // Gestion du scroll de la page
         if (this.divModal.classList.contains("invisible")){
             document.body.classList.add("overflow-y-hidden");
         } else {

@@ -3,6 +3,7 @@ import { PanierAchat } from "./PanierAchat.js";
 import { LivreModal } from "./modal.js";
 import GestionnaireDonnees from "./GestionnaireDonnees.js";
 import { Livre } from "./Livre.js";
+
 /**
  * Classe GestionnaireLibrairie
  * contient la liste des livres et implémente le patron Singleton
@@ -24,6 +25,11 @@ export default class GestionnaireLibrairie {
         this.init();
     }
 
+    /**
+     * Initialise l'app
+     * Création des objets Livre pour chaque element de la liste livre
+     * Ajout de gestionnaire d'événement sur le conteneur livre et bouton de filtre
+     */
     init() {
         listeLivres.forEach((element, index) => {
             const livre = new Livre(element, index);
@@ -34,14 +40,16 @@ export default class GestionnaireLibrairie {
 
         this.conteneursLivre.forEach(function (conteneur) {
             conteneur.addEventListener('click', function(e){
+                // Vérifie si un bouton "Ajouter au panier" a été cliqué.
                 if(e.target.closest("[data-btn-panier]")!=null){
-                    return;
+                    return; // si oui ne rien faire
                 }
                 const modalLivre = new LivreModal(conteneur);
             });
         });
-        
+        // Ajout du gestionnaire d'événements sur le bouton de filtre par catégorie
         this.btnCategorie.addEventListener('click', function (e) {
+            e.preventDefault();
             if (e.target.dataset.filtreCategorie == 'litterature') {
                 this.filtrerListeLivres('Littérature', e);
             } else if (e.target.dataset.filtreCategorie == 'art de vivre') {
@@ -55,7 +63,7 @@ export default class GestionnaireLibrairie {
             } else if (e.target.dataset.filtreCategorie == 'savoir et science') {
                 this.filtrerListeLivres('Savoir et science', e)
             } else if (e.target.dataset.filtreCategorie == 'nouveaute') {
-                this.filtrerNouveautes('nouveaute', e)
+                this.filtrerNouveautes();
             } else if (e.target.dataset.filtreCategorie == 'tous'){
                 this.filtrerListeLivres('tous', e);
             }
@@ -65,8 +73,11 @@ export default class GestionnaireLibrairie {
         this.chargerPanier();
     }
 
-
-    filtrerListeLivres(filtre, evenement) {
+    /**
+     * 
+     * @param {string} filtre La catégorie de filtre
+     */
+    filtrerListeLivres(filtre) {
 
         const elementsAvantFiltres = this.listeHTML.querySelectorAll(".container-livre");
         if (filtre == 'tous') {
@@ -89,7 +100,10 @@ export default class GestionnaireLibrairie {
         }
     }
 
-    filtrerNouveautes(evenement) {
+    /**
+     * Filtre la liste des livres pour afficher les nouveautés
+     */
+    filtrerNouveautes() {
         const elementsAvantFiltres = this.listeHTML.querySelectorAll(".container-livre");
             elementsAvantFiltres.forEach((element) => {
                 if (element.classList.contains('invisible')){
@@ -103,21 +117,22 @@ export default class GestionnaireLibrairie {
             });
     }
     
-
+    /**
+     * Enregistre un nouveau livre dans le panier
+     * @param {object} nouveauLivre Les données du nouveau livre à ajouter
+     */
     enregistrerPanier(nouveauLivre) {
-        console.log('test2') // IL SE REND ICI MAIS N'ENREGISTRE PAS LES DONNÉES
-        console.log(nouveauLivre)
-        console.log('panier achat : ', this.panierAchat.panier)
-
         this.panierAchat.ajouterAuPanier(nouveauLivre);
         const donneePanier = this.panierAchat.panier;
         const donneesLocales = GestionnaireDonnees.enregistrerDonneesLocales("panier", donneePanier);
     }
 
+    /**
+     * Ramasse les données locales si présente
+     */
     chargerPanier() {
         const donneesLocales = GestionnaireDonnees.recupererDonneesLocales("panier");
         if (donneesLocales !== null){
-            console.log('allo')
             this.panierAchat.panier = donneesLocales;
             this.panierAchat.setPanierHTML();
         }

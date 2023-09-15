@@ -154,9 +154,7 @@ tfoot > th{
 thead >tr> th{
     font-weight: 300;
 }
-.invisible{
-    display: none;
-}
+
 
 /* Modale livre */
 button{
@@ -196,6 +194,10 @@ hgroup h4{
     margin-bottom: 15px;
 }
 
+/* Classe pour javascript */
 .overflow-y-hidden {
     overflow-y: hidden;
+}
+.invisible{
+    display: none;
 }

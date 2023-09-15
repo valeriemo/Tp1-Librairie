@@ -20,7 +20,9 @@ export class Livre {
     init() {
         this.injecterHTML();
     }
-
+    /**
+     * Injecte un élément HTML représentant un livre à la fin de la liste de livres.
+     */
     injecterHTML() {
         const livreHTML = `
                         <article class="container-livre" data-index-livre="${this.index}" data-categorie="${this.categorie}" data-nouveaute="${this.nouveaute}">
@@ -40,12 +42,11 @@ export class Livre {
 
         const element = this.containerListeLivre.lastElementChild;
         const boutonPanier = element.querySelector("[data-btn-panier]");
-
-        // Au clic du btn "ajouter" le livre est enregistrer
+        // Ajoute un gestionnaire d'événements au bouton "Ajouter" pour enregistrer le livre dans le panier.
         boutonPanier.addEventListener(
             "click",
-            function () {
-                console.log('test')
+            function (e) {
+                e.preventDefault();
                 GestionnaireLibrairie.instance.enregistrerPanier(this);
                 }.bind(this));
     }

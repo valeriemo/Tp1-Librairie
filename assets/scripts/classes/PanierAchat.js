@@ -1,6 +1,5 @@
 import GestionnaireLibrairie from "./GestionnaireLibrairie.js";
 
-
 export class PanierAchat {
     constructor() {
         this.panier = [];
@@ -17,27 +16,28 @@ export class PanierAchat {
         this.modalBtn.addEventListener("click", this.afficherPanier);
         
     }
-
+    /**
+     * Ajoute un livre au panier.
+     *
+     * @param {object} livre - L'objet représentant le livre à ajouter au panier.
+     */
     ajouterAuPanier(livre) {
-        console.log(livre.titre);
-        console.log('le panier',this.panier)
 
-        // PROBLEME ICI - je veux eviter que le meme livre entre 2 fois dans le panier
-        console.log(this.panier.length);
+         // Vérifie si le livre est déjà présent dans le panier en utilisant la méthode `some`.
         const livreDejaPresent = this.panier.some(function (article) {
             return livre.titre === article.titre;
         });
-        
         if (!livreDejaPresent) {
             this.panier.push(livre);
         }
-        
-        console.log('panier a la fin ajouterpanier', this.panier);
-// POURQUOI il ne s'ajoute pas ???
+        // Mise a jour du panier 
         this.setPanierHTML(this.panier);
     }
 
-
+    
+    /**
+     * Met à jour l'affichage du panier avec les livres dans le panier.
+     */
     setPanierHTML() {
         // Enlever le msg de panier vide si visible
         if(!this.divMsg.classList.contains("invisible")){
@@ -45,7 +45,6 @@ export class PanierAchat {
         }
 
         let tableHTML = '';
-        console.log('panier dans set panier',this.panier);
         this.panier.forEach(function (article) {
             tableHTML += `
                 <tr>
@@ -54,18 +53,21 @@ export class PanierAchat {
                 </tr>
             `;
         });
-        console.log(this.panierModal);
         const tableBody = this.panierModal.querySelector('tbody');
-        console.log(tableBody);
         tableBody.innerHTML = tableHTML;
 
         const containerTotal = this.panierModal.querySelector("[data-prix]");
+        // Appelle la fonction calculerTotal() pour le total
         containerTotal.innerHTML = this.calculerTotal() + " $";
 
+        // Gestion du pluriel du mot "livre"
         const thLivre = this.panierModal.querySelector("[data-th-livre]");
         if(this.panier.length + 1){thLivre.innerHTML = "Livres"};
     }
 
+    /**
+     * Affiche ou masque le panier en fonction du contenu du panier
+     */
     afficherPanier() {
         if (this.panier.length == 0) {
             const msgVide = "Il n'y a aucun livre dans votre panier.";
@@ -78,6 +80,11 @@ export class PanierAchat {
         this.panierModal.classList.toggle("invisible");
     }
 
+    /**
+     * Calcule le total de tous les articles dans le panier
+     * 
+     * @returns {number} Le total des prix
+     */
     calculerTotal() {
     let totalPrix = 0;
         this.panier.forEach(function (article){
